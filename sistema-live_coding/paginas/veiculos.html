@@ -6,7 +6,7 @@
     <title>Oficina - Veículos</title>
 </head>
 <body>
-    <h1>CLIENTES</h1>
+    <h1>VEÍCULOS</h1>
     <p><a href="/principal">Voltar</a></p>
 
     <form method="GET" action="/veiculos">
@@ -18,10 +18,10 @@
         <tr><th>NOME</th><th>CPF</th><th>TELEFONE</th><th>E-MAIL</th></tr>
         {{#clientes}}
         <tr>
-            <td>{{nome}}</td>
-            <td>{{cpf}}</td>
-            <td>{{telefone}}</td>
-            <td>{{email}}</td>
+            <td>{{marca}}</td>
+            <td>{{modelo}}</td>
+            <td>{{placa}}</td>
+            <td>{{ano}}</td>
             <td>
                 <a href="/clientes?editar={{id}}">✏️</a>
                 <form method="POST" action="/clientes/{{id}}">
