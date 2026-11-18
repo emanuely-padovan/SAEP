@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS oficina;
 USE oficina;
 
 CREATE TABLE IF NOT EXISTS cliente(
-	id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     cpf VARCHAR(150) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL,
@@ -11,17 +11,17 @@ CREATE TABLE IF NOT EXISTS cliente(
 );
 
 CREATE TABLE IF NOT EXISTS veiculo(
-	id_veiculo INT AUTO_INCREMENT PRIMARY KEY,
+    id_veiculo INT AUTO_INCREMENT PRIMARY KEY,
     marca VARCHAR(100) NOT NULL,
     modelo VARCHAR(100) NOT NULL,
     placa VARCHAR(100) NOT NULL,
-    ano YEAR, 
+    ano YEAR,
     id_cliente INT NOT NULL,
     FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 );
 
 CREATE TABLE IF NOT EXISTS agendamento(
-	id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
     id_veiculo INT,
     data_agendamento DATETIME NOT NULL,
     servico VARCHAR(100),
@@ -29,35 +29,28 @@ CREATE TABLE IF NOT EXISTS agendamento(
 );
 
 CREATE TABLE IF NOT EXISTS usuario(
-	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     senha VARCHAR(150) NOT NULL
 );
 
--- Tabela cliente
 INSERT INTO cliente (nome, cpf, email, telefone) VALUES
 ('João Silva', 'ce4751c785b836452a1c6c2c9a937267', 'joao@gmail.com', '11987654321'),
 ('Maria Oliveira', 'adee4f72b9422fcf93ab6528bf098ea2', 'maria@gmail.com', '11976543210'),
 ('Pedro Santos', '3c6c35b49851f208aab4504e0f4ce3fe', 'pedro@gmail.com', '11965432109');
 
-
--- Tabela veiculo
 INSERT INTO veiculo (marca, modelo, placa, ano, id_cliente) VALUES
 ('Toyota', 'Corolla', 'ABC1D23', 2022, 1),
 ('Honda', 'Civic', 'DEF4G56', 2021, 2),
 ('Volkswagen', 'Gol', 'GHI7J89', 2019, 3);
 
-
--- Tabela agendamento
 INSERT INTO agendamento (id_veiculo, data_agendamento, servico) VALUES
 (1, '2026-11-12 09:00:00', 'Troca de óleo'),
 (2, '2026-11-13 14:30:00', 'Revisão completa'),
 (3, '2026-11-14 10:00:00', 'Alinhamento e balanceamento');
 
-
--- Tabela usuario
 INSERT INTO usuario (nome, email, senha) VALUES
-('Carlos Mendes', 'carlos@mecanica.com', 'senha'),
-('Ana Costa', 'ana@mecanica.com', '1234'),
-('Lucas Ferreira', 'lucas@mecanica.com', '0608');
+('Carlos Mendes', 'carlos@mecanica.com', '$2b$10$R9BleUaedTVFsIzmHjjx3.yalex0buw9JL0TXHRO7Mg.OKqpANAb6'),
+('Ana Costa', 'ana@mecanica.com', '$2b$10$BdK/ltrAGgIjCbmLVTwIxOVpkRCHZYNkqKUV5UKWlA12yohsrcnOm'),
+('Lucas Ferreira', 'lucas@mecanica.com', '$2b$10$bTYZ4waAGvHSzpKIfouh5e4FiJgo5XRuk82486nTn1KzFDAJu9i8K');
