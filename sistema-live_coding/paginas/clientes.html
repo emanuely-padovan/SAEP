@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficina - Clientes</title>
+</head>
+<body>
+    <h1>CLIENTES</h1>
+    <p><a href="/principal">Voltar</a></p>
+
+    <form method="GET" action="/clientes">
+        <input type="text" name="busca" placeholder="Insira um nome..." value="{{busca}}"/>
+        <button>Buscar</button>
+    </form>
+
+    <table border="1">
+        <tr><th>NOME</th><th>CPF</th><th>TELEFONE</th><th>E-MAIL</th></tr>
+        {{#clientes}}
+        <tr>
+            <td>{{nome}}</td>
+            <td>{{cpf}}</td>
+            <td>{{telefone}}</td>
+            <td>{{email}}</td>
+            <td>
+                <a href="/clientes?editar={{id}}">✏️</a>
+                <form method="POST" action="/clientes/{{id}}">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button>🗑️</button>
+                </form>
+            </td>
+        </tr>
+        {{/clientes}}
+    </table>
+
+    <h2>{{#editando}}Editar{{/editando}} {{^editando}}Cadastrar{{/editando}} cliente</h2>
+    <form method="POST" action="{{acao}}">{{editando}}
+        <input type="hiden" name="_method" value="PUT"/>{{editando}}
+        <input type="text" name="nome" placeholder="Insira um nome..." value="{{form.nome}}" required/>
+        <input type="text" name="cpf" placeholder="Insira seu CPF..." value="{{form.cpf}}" required/>
+        <input type="text" name="telefone" placeholder="Insira seu telefone..." value="{{form.telefone}}" required/>
+        <input type="email" name="email" placeholder="Insira um email..." value="{{form.email}}" required/>
+
+        <button>{{#editando}}Salvar{{/editando}} {{^editando}}Cadastrar{{/editando}}</button>
+    </form>
+</body>
+</html>

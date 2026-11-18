@@ -18,7 +18,7 @@ const cpf2 = criptografarCpf('09876543210')
 const cpf3 = criptografarCpf('10293847561')
 
 const sql = `
-CREATE DATABASE IF NOT EXISTS db_mecanica;
+CREATE DATABASE IF NOT EXISTS oficina;
 USE oficina;
 
 CREATE TABLE IF NOT EXISTS cliente(
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS veiculo(
 
 CREATE TABLE IF NOT EXISTS agendamento(
 	id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
-    id_veiculo INT NOT NULL,
+    id_veiculo INT,
     data_agendamento DATETIME NOT NULL,
     servico VARCHAR(100),
     FOREIGN KEY (id_veiculo) REFERENCES veiculo(id_veiculo)
@@ -51,14 +51,14 @@ CREATE TABLE IF NOT EXISTS usuario(
 	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    senha VARCHAR(150) NOT NULL,
+    senha VARCHAR(150) NOT NULL
 );
 
 -- Tabela cliente
 INSERT INTO cliente (nome, cpf, email, telefone) VALUES
-('João Silva', '${cpf1}', 'joao@gmail.com', '11987654321'),
-('Maria Oliveira', '${cpf2}', 'maria@gmail.com', '11976543210'),
-('Pedro Santos', '${cpf3}', 'pedro@gmail.com', '11965432109');
+('João Silva', 'ce4751c785b836452a1c6c2c9a937267', 'joao@gmail.com', '11987654321'),
+('Maria Oliveira', 'adee4f72b9422fcf93ab6528bf098ea2', 'maria@gmail.com', '11976543210'),
+('Pedro Santos', '3c6c35b49851f208aab4504e0f4ce3fe', 'pedro@gmail.com', '11965432109');
 
 
 -- Tabela veiculo
@@ -77,9 +77,9 @@ INSERT INTO agendamento (id_veiculo, data_agendamento, servico) VALUES
 
 -- Tabela usuario
 INSERT INTO usuario (nome, email, senha) VALUES
-('Carlos Mendes', 'carlos@mecanica.com', '${senhaHash}'),
-('Ana Costa', 'ana@mecanica.com', '${senhaHash}'),
-('Lucas Ferreira', 'lucas@mecanica.com', '${senhaHash}');
+('Carlos Mendes', 'carlos@mecanica.com', 'senha'),
+('Ana Costa', 'ana@mecanica.com', '1234'),
+('Lucas Ferreira', 'lucas@mecanica.com', '0608');
 `;
 
 const caminho_saida = path.join(__dirname, 'database', 'script.sql')

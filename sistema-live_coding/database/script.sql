@@ -1,5 +1,5 @@
 
-CREATE DATABASE IF NOT EXISTS db_mecanica;
+CREATE DATABASE IF NOT EXISTS oficina;
 USE oficina;
 
 CREATE TABLE IF NOT EXISTS cliente(
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS veiculo(
 
 CREATE TABLE IF NOT EXISTS agendamento(
 	id_agendamento INT AUTO_INCREMENT PRIMARY KEY,
-    id_veiculo INT NOT NULL,
+    id_veiculo INT,
     data_agendamento DATETIME NOT NULL,
     servico VARCHAR(100),
     FOREIGN KEY (id_veiculo) REFERENCES veiculo(id_veiculo)
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS usuario(
 	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    senha VARCHAR(150) NOT NULL,
+    senha VARCHAR(150) NOT NULL
 );
 
 -- Tabela cliente
@@ -58,6 +58,6 @@ INSERT INTO agendamento (id_veiculo, data_agendamento, servico) VALUES
 
 -- Tabela usuario
 INSERT INTO usuario (nome, email, senha) VALUES
-('Carlos Mendes', 'carlos@mecanica.com', '$2b$10$xjXSeEjvCAKQXypmwIBVBuKM1qzevzvQKLXEerW2KzhCjEF6QijBe'),
-('Ana Costa', 'ana@mecanica.com', '$2b$10$xjXSeEjvCAKQXypmwIBVBuKM1qzevzvQKLXEerW2KzhCjEF6QijBe'),
-('Lucas Ferreira', 'lucas@mecanica.com', '$2b$10$xjXSeEjvCAKQXypmwIBVBuKM1qzevzvQKLXEerW2KzhCjEF6QijBe');
+('Carlos Mendes', 'carlos@mecanica.com', 'senha'),
+('Ana Costa', 'ana@mecanica.com', '1234'),
+('Lucas Ferreira', 'lucas@mecanica.com', '0608');
